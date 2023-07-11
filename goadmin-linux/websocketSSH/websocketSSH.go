@@ -4,9 +4,9 @@ import (
 	"net/http"
 	"strconv"
 
-	"framework/goadmin-linux/websocketSSH/connections"
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
+	"github.com/ljzh152535/framework/goadmin-linux/websocketSSH/connections"
 )
 
 var upgrader = websocket.Upgrader{

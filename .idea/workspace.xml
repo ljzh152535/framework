@@ -5,35 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="045534de-94c5-4414-b8f5-efc3b29cc448" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/goadmin-cron/timer.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-excel/caozuo.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-excel/excel.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-linux/curl/curl.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-linux/remoteShell/remoteShell.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-linux/remoteShell/sshLocalshell.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-linux/shell/shell.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-linux/telnet/telnet.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-linux/websocketLog/connections/connections.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-linux/websocketLog/connections/models.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-linux/websocketLog/errors.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-linux/websocketLog/monitor.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-linux/websocketLog/websocketLog.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-linux/websocketLog/ws.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-linux/websocketSSH/connections/connections.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-linux/websocketSSH/connections/models.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-linux/websocketSSH/errors.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-linux/websocketSSH/websocketSSH.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-logrus/logrus.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-os/file.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-os/folder.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-os/os.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-os/separator.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-os/tree.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-reptile/reptile.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-viper/ginViper.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-viper/viper.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goadmin-linux/websocketSSH/websocketSSH.go" beforeDir="false" afterPath="$PROJECT_DIR$/goadmin-linux/websocketSSH/websocketSSH.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,23 +33,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultGoTemplateProperty": "Go File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.go.format.on.save.advertiser.fired": "true",
-    "RunOnceActivity.go.formatter.settings.were.checked": "true",
-    "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
-    "RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "go.import.settings.migrated": "true",
-    "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "C:/Users/feng",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.format.on.save.advertiser.fired&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/feng&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Go Build.go build framework">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="framework" />
