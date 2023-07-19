@@ -114,7 +114,7 @@ func connditionSelect(typeName logType, logTypeName logType) {
 			// runtime.Frame: 帧,可用于获取调用者返回的PC值的函数、文件或者是行信息
 			CallerPrettyfier: func(frame *runtime.Frame) (function string, file string) {
 				fileName := path.Base(frame.File)
-				return frame.Function, fileName
+				return frame.Function, fmt.Sprintf("%s:%d", fileName, frame.Line)
 			},
 		})
 	}
