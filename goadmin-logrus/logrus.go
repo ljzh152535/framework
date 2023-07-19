@@ -8,8 +8,10 @@ import (
 	"github.com/sirupsen/logrus"
 	"io"
 	"os"
+	"path"
 	"path/filepath"
 	"reflect"
+	"runtime"
 	"strings"
 	"time"
 )
@@ -105,7 +107,16 @@ func connditionSelect(typeName logType, logTypeName logType) {
 	if typeName == logTypeName {
 		log.SetFormatter(&LogFormatter{})
 	} else {
-		log.SetFormatter(&logrus.JSONFormatter{})
+		//log.SetFormatter(&logrus.JSONFormatter{})
+		// 日志格式改成json
+		logrus.SetFormatter(&logrus.JSONFormatter{
+			TimestampFormat: "2006-01-02 15:04:05",
+			// runtime.Frame: 帧,可用于获取调用者返回的PC值的函数、文件或者是行信息
+			CallerPrettyfier: func(frame *runtime.Frame) (function string, file string) {
+				fileName := path.Base(frame.File)
+				return frame.Function, fileName
+			},
+		})
 	}
 }
 
