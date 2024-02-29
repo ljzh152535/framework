@@ -1,4 +1,10 @@
 ## golang 框架工具
+### 打包
+```
+go mod init github.com/ljzh152535/framework
+go mod tidy
+```
+
 
 ### 初始化推送到github
 ```
