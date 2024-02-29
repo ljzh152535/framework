@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	goadmin_consul "framework/goadmin-consul"
+	goadmin_consul "github.com/ljzh152535/framework/goadmin-consul"
 )
 
 func main() {

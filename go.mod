@@ -1,4 +1,4 @@
-module framework
+module github.com/ljzh152535/framework
 
 go 1.20
 
