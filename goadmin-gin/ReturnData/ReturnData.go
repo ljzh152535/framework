@@ -25,10 +25,9 @@ type Info struct {
 	ReturnData
 }
 
-func GetRequestInfo(r *gin.Context, info interface{}) (bindInfo interface{}, errs error) {
+func GetRequestInfo(r *gin.Context, info interface{}) (bindInfo interface{}, err error) {
 	// 首先获取请求的类型
 	requestMethod := r.Request.Method
-	var err error
 	if requestMethod == "GET" {
 		err = r.ShouldBindQuery(&info)
 	} else if requestMethod == "POST" {
