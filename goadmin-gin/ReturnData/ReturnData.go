@@ -25,7 +25,7 @@ type Info struct {
 	ReturnData
 }
 
-func GetRequestInfo(r *gin.Context, info interface{}) (bindInfo interface{}, err error) {
+func GetRequestInfo(r *gin.Context, info interface{}) (err error) {
 	// 首先获取请求的类型
 	requestMethod := r.Request.Method
 	if requestMethod == "GET" {
@@ -35,5 +35,5 @@ func GetRequestInfo(r *gin.Context, info interface{}) (bindInfo interface{}, err
 	} else {
 		err = errors.New("不支持请求类型")
 	}
-	return info, err
+	return err
 }
