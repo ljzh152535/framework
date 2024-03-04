@@ -34,7 +34,7 @@ func GetResData(data interface{}, itemType string) map[string]interface{} {
 // 构造函数,配置默认值
 func newReturnData(status int, message string, data map[string]interface{}) ReturnData {
 	returnData := ReturnData{}
-	returnData.Status = 200
+	returnData.Status = status
 	returnData.Message = message
 	returnData.Data = data
 	return returnData
