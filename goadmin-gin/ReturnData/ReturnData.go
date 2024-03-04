@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	ERROR   = 400
+	ERROR   = 401
 	SUCCESS = 200
 )
 
