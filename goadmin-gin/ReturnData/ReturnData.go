@@ -19,7 +19,7 @@ type ReturnData struct {
 }
 
 // 构造函数,配置默认值
-func NewReturnData(status int, message string, data map[string]interface{}) ReturnData {
+func newReturnData(status int, message string, data map[string]interface{}) ReturnData {
 	returnData := ReturnData{}
 	returnData.Status = 200
 	returnData.Message = message
@@ -41,24 +41,24 @@ func GetRequestInfo(r *gin.Context, info interface{}) (err error) {
 	return err
 }
 
-func Result(status int, message string, data map[string]interface{}, c *gin.Context) {
-	returnData := NewReturnData(status, message, data)
+func result(status int, message string, data map[string]interface{}, c *gin.Context) {
+	returnData := newReturnData(status, message, data)
 	c.JSON(http.StatusOK, returnData)
 }
 
 // 操作成功,并返回数据和成功信息
 func OK(message string, data map[string]interface{}, c *gin.Context) {
-	Result(SUCCESS, message, data, c)
+	result(SUCCESS, message, data, c)
 }
 
 // 操作成功,只返回成功信息
 func OKWithMessage(message string, c *gin.Context) {
-	Result(SUCCESS, message, nil, c)
+	result(SUCCESS, message, nil, c)
 }
 
 // 操作成功,只返回成功数据
 func OKWithData(data map[string]interface{}, c *gin.Context) {
-	Result(SUCCESS, "操作成功", data, c)
+	result(SUCCESS, "操作成功", data, c)
 }
 
 //func OKWithList[T any](List []T, count any, c *gin.Context) {
@@ -73,12 +73,12 @@ func OKWithData(data map[string]interface{}, c *gin.Context) {
 
 // 操作失败,并返回数据和失败信息
 func Fail(data map[string]interface{}, message string, c *gin.Context) {
-	Result(ERROR, message, data, c)
+	result(ERROR, message, data, c)
 }
 
 // 操作失败,并返回失败信息
 func FailWithMessage(message string, c *gin.Context) {
-	Result(ERROR, message, nil, c)
+	result(ERROR, message, nil, c)
 }
 
 //func FailWithCode(code ErrorCode, c *gin.Context) {
