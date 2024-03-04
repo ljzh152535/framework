@@ -7,10 +7,11 @@ import (
 )
 
 const (
-	ERROR   = 401
-	SUCCESS = 200
-	ITEM    = "item"
-	ITEMS   = "items"
+	FAILERROR = 200
+	SUCCESS   = 200
+	ErrorCode = 401
+	ITEM      = "item"
+	ITEMS     = "items"
 )
 
 // 定义返回数据结构体
@@ -86,19 +87,15 @@ func OKWithData(data map[string]interface{}, c *gin.Context) {
 
 // 操作失败,并返回数据和失败信息
 func Fail(data map[string]interface{}, message string, c *gin.Context) {
-	result(ERROR, message, data, c)
+	result(FAILERROR, message, data, c)
 }
 
 // 操作失败,并返回失败信息
 func FailWithMessage(message string, c *gin.Context) {
-	result(ERROR, message, nil, c)
+	result(FAILERROR, message, nil, c)
 }
 
-//func FailWithCode(code ErrorCode, c *gin.Context) {
-//	msg, ok := ErrorMap[code]
-//	if ok {
-//		Result(int(code), map[string]interface{}{}, msg, c)
-//		return
-//	}
-//	Result(ERROR, map[string]interface{}{}, "未知错误", c)
-//}
+// 自定义返回失败码
+func FailWithCodeMessage(status int, message string, c *gin.Context) {
+	result(status, message, nil, c)
+}
