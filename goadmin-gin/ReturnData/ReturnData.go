@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	FAILERROR = 200
+	FAILERROR = 400
 	SUCCESS   = 200
 	ErrorCode = 401
 	ITEM      = "item"
