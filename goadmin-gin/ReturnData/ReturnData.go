@@ -21,8 +21,8 @@ type ReturnData struct {
 }
 
 // 获取返回数据格式
-func GetResData(data interface{}, itemType string) map[string]interface{} {
-	var a map[string]interface{}
+func GetResData(data interface{}, itemType string) (a map[string]interface{}) {
+	//var a map[string]interface{}
 	if itemType == ITEM {
 		a[ITEM] = data // 返回单个 item数据
 	} else {
