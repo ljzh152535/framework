@@ -9,6 +9,8 @@ import (
 const (
 	ERROR   = 401
 	SUCCESS = 200
+	ITEM    = "item"
+	ITEMS   = "items"
 )
 
 // 定义返回数据结构体
@@ -16,6 +18,17 @@ type ReturnData struct {
 	Status  int                    `json:"status"`
 	Message string                 `json:"message"`
 	Data    map[string]interface{} `json:"data"`
+}
+
+// 获取返回数据格式
+func ResData(data interface{}, itemType string) map[string]interface{} {
+	var a map[string]interface{}
+	if itemType == ITEM {
+		a[ITEM] = data // 返回单个 item数据
+	} else {
+		a[ITEMS] = data // 返回多个 item数据
+	}
+	return a
 }
 
 // 构造函数,配置默认值
