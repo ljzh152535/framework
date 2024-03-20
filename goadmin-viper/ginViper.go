@@ -51,7 +51,7 @@ func InitGinViper(a interface{}, path ...string) *viper.Viper {
 	}
 
 	v := viper.New()
-	v.SetConfigFile(config)
+	v.SetConfigFile("./config/" + config)
 	v.SetConfigType("yaml")
 	err := v.ReadInConfig()
 	if err != nil {
