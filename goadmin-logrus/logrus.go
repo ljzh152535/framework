@@ -27,6 +27,7 @@ type CoreLogrus struct {
 	LogPath           string `mapstructure:"logPath" json:"logPath" yaml:"logPath"`                               // 日志路径
 	MaxAge            int64  `mapstructure:"max-age" json:"max-age" yaml:"max-age"`                               // 日志留存时间
 	MaxCapacity       int64  `mapstructure:"max-capacity" json:"max-capacity" yaml:"max-capacity"`                // 单个日志的最大容量
+	HostName          string `mapstructure:"hostName" json:"hostName" yaml:"hostName"`                            // 主机名
 }
 
 func InitLogrus(logConf CoreLogrus) *logrus.Entry {
@@ -137,7 +138,7 @@ func setLogrusConf(logConf CoreLogrus, logNew *logrus.Logger) *logrus.Entry {
 	l := logNew.WithFields(logrus.Fields{
 		"env": logConf.LogEnv,
 		//"loccal_ip": env.LocalIP(),
-		"hostname": os.Hostname(),
+		"hostname": logConf.HostName,
 	})
 
 	log = l
@@ -149,7 +150,7 @@ func setRotatelogs(logConf CoreLogrus) *rotatelogs.RotateLogs {
 
 	writer, err := rotatelogs.New(
 		logfile+"-%Y%m%d.log",
-		rotatelogs.WithLinkName(logfile), //生成软链，指向最新日志文件
+		rotatelogs.WithLinkName(logfile),                                  //生成软链，指向最新日志文件
 		rotatelogs.WithMaxAge(time.Hour*24*time.Duration(logConf.MaxAge)), // 最大的保留时间 单位: 天
 		rotatelogs.WithRotationTime(24*time.Hour),                         //最小为1分钟轮询。默认60s  低于1分钟就按1分钟来
 		rotatelogs.WithRotationSize(logConf.MaxCapacity*1024*1024),        // 设置分割文件的大小为  单位: MB
