@@ -7,6 +7,7 @@ import (
 	"io"
 	"os"
 	"path"
+	"path/filepath"
 	"runtime"
 	"sync"
 	"time"
@@ -68,7 +69,7 @@ func setLogrusLevel(logConf CoreLogrus, logNew *logrus.Logger) {
 }
 
 // 设置日志格式
-func setLogrusFormat(logConf CoreLogrus, logNew *logrus.Logger) {
+func setLogrusFormat(logConf CoreLogrus, logNew *logrus.Logger, entry *logrus.Entry) {
 	if logConf.LogFormat == "json" {
 		logNew.SetFormatter(&logrus.JSONFormatter{
 			TimestampFormat: logTimeTpl,
@@ -84,6 +85,11 @@ func setLogrusFormat(logConf CoreLogrus, logNew *logrus.Logger) {
 		logNew.SetFormatter(&logrus.TextFormatter{
 			TimestampFormat: logTimeTpl,
 			DisableColors:   logConf.LogEnv != "dev",
+			CallerPrettyfier: func(frame *runtime.Frame) (function string, file string) {
+				fName := filepath.Base(entry.Caller.File)
+				return frame.Function, fmt.Sprintf("[%s] [%-7s] [%s:%d %s] %s\n",
+					logTimeTpl, entry.Level.String(), fName, entry.Caller.Line, entry.Caller.Function, entry.Message)
+			},
 		})
 	}
 }
@@ -128,9 +134,6 @@ func setLogrusConf(logConf CoreLogrus, logNew *logrus.Logger) *logrus.Entry {
 	// 显示文件和代码行数
 	logNew.SetReportCaller(logConf.IsSetReportCaller) // 显示文件和代码行数
 
-	// 设置日志格式 json 或者 text
-	setLogrusFormat(logConf, logNew)
-
 	// 设置日志输出方式
 	setLogrusOutput(logConf, logNew)
 
@@ -141,16 +144,19 @@ func setLogrusConf(logConf CoreLogrus, logNew *logrus.Logger) *logrus.Entry {
 		"hostname": logConf.HostName,
 	})
 
+	// 设置日志格式 json 或者 text
+	setLogrusFormat(logConf, logNew, l)
 	log = l
 	return l
 }
 
+// 设置日志切割
 func setRotatelogs(logConf CoreLogrus) *rotatelogs.RotateLogs {
 	logfile := logConf.LogPath
 
 	writer, err := rotatelogs.New(
 		logfile+"-%Y%m%d.log",
-		rotatelogs.WithLinkName(logfile),                                  //生成软链，指向最新日志文件
+		rotatelogs.WithLinkName(logfile), //生成软链，指向最新日志文件
 		rotatelogs.WithMaxAge(time.Hour*24*time.Duration(logConf.MaxAge)), // 最大的保留时间 单位: 天
 		rotatelogs.WithRotationTime(24*time.Hour),                         //最小为1分钟轮询。默认60s  低于1分钟就按1分钟来
 		rotatelogs.WithRotationSize(logConf.MaxCapacity*1024*1024),        // 设置分割文件的大小为  单位: MB
