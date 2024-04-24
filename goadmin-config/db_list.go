@@ -1,12 +1,12 @@
 package goadmin_config
 
-type DBItemConf struct {
+type GeneralDB struct {
 	Host         string `yaml:"host"`
 	Port         string `yaml:"port"`
 	Database     string `yaml:"database"`
 	Username     string `yaml:"username"`
 	Password     string `yaml:"password"`
-	Config       string `yaml:"config"`
+	Config       string `yaml:"config"`                                       // 高级配置
 	Timeout      int    `yaml:"timeout"`                                      // connect db timeout , uint ms
 	WriteTimeOut int    `yaml:"write_time_out" mapstructure:"write_time_out"` // write data timeout , uint ms
 	ReadTimeOut  int    `yaml:"read_time_out" mapstructure:"read_time_out"`   // read data timeout,uint ms
@@ -15,6 +15,6 @@ type DBItemConf struct {
 }
 
 type DBItem struct {
-	Write DBItemConf `yaml:"write"`
-	Read  DBItemConf `yaml:"read"`
+	Write GeneralDB `yaml:"write"`
+	Read  GeneralDB `yaml:"read"`
 }

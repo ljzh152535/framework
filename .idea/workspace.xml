@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="045534de-94c5-4414-b8f5-efc3b29cc448" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/goadmin-config/config_mysql.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/goadmin-db/db.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goadmin-config/db.go" beforeDir="false" afterPath="$PROJECT_DIR$/goadmin-config/db.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goadmin-config/db.go" beforeDir="false" afterPath="$PROJECT_DIR$/goadmin-config/db_list.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goadmin-viper/ginViper.go" beforeDir="false" afterPath="$PROJECT_DIR$/goadmin-viper/ginViper.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +56,7 @@
     "WebServerToolWindowFactoryState": "false",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "C:/Users/feng",
+    "last_opened_file_path": "D:/necessary/code/goPrograme/programe/program-other/admin-backend",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
