@@ -5,53 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="045534de-94c5-4414-b8f5-efc3b29cc448" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/configYml/config.release.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/configYml/config.test.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/configYml/config.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/controllers/auth/auth.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/controllers/test/create.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/controllers/test/delete.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/controllers/test/get.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/controllers/test/list.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/controllers/test/service.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/controllers/test/update.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/core/db.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/global/global.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/middleware/corsMiddleWare.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/middleware/jwtMiddleware.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/middleware/logMiddleware.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/model/user/user.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/routers/auth/auth.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/routers/routers.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/routers/test/test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-config/config_system.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-config/config_webserverlog.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-cron/model/model.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-db/dbinit.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-db/logger.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-gin/middleware/logger/logger.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-logrus/hook.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-logrus/lumberjack/chown.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-logrus/lumberjack/lumberjack.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-logrus/lumberjackrus/lumberjackrus.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-logrus/model.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-logrus/setLogrusConf.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-os/env.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-utils/jwtutil/jwtutil.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-utils/timeutils/timeutils.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goadmin-config/config_mysql.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/goadmin-config/db_list.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/goadmin-consul/consul.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/goadmin-db/db.go" beforeDir="false" afterPath="$PROJECT_DIR$/goadmin-db/db.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goadmin-excel/caozuo.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/goadmin-excel/excel.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/goadmin-gin/middleware/corsMiddleWare.go" beforeDir="false" afterPath="$PROJECT_DIR$/goadmin-gin/middleware/corsMiddleWare.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goadmin-gorm/test.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/goadmin-logrus/logrus.go" beforeDir="false" afterPath="$PROJECT_DIR$/goadmin-logrus/logrus.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goadmin-viper/ginViper.go" beforeDir="false" afterPath="$PROJECT_DIR$/goadmin-viper/ginViper.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goadmin-utils/timeutils/timeutils.go" beforeDir="false" afterPath="$PROJECT_DIR$/goadmin-utils/timeutils/timeutils.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,28 +39,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
-    &quot;Go Build.go build github.com/ljzh152535/framework/app.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.format.on.save.advertiser.fired&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.automatic.dependencies.download&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/necessary/code/goPrograme/programe/program/framework/goadmin-gin/middleware&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;http.proxy&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultGoTemplateProperty": "Go File",
+    "Go Build.go build github.com/ljzh152535/framework/app.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.format.on.save.advertiser.fired": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.automatic.dependencies.download": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "last_opened_file_path": "D:/necessary/code/goPrograme/programe/program-other/admin-backend",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "http.proxy"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\necessary\code\goPrograme\programe\program\framework\goadmin-gin\middleware" />
