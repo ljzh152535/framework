@@ -19,9 +19,9 @@ const (
 
 // Viper //
 // 优先级: 命令行 > 环境变量 > 默认值
+// GVA_CONFIG="debug" GVA_CONFIG="release" GVA_CONFIG="test"
 func InitGinViper(a interface{}, path ...string) *viper.Viper {
 	var config string
-
 	if len(path) == 0 {
 		flag.StringVar(&config, "c", "", "choose config file.")
 		flag.Parse()

@@ -1,6 +1,6 @@
-package goadmin_config
+package model
 
-type GeneralDB struct {
+type DBItemConf struct {
 	Host         string `yaml:"host"`
 	Port         string `yaml:"port"`
 	Database     string `yaml:"database"`
@@ -14,7 +14,16 @@ type GeneralDB struct {
 	MaxOpenConns int    `yaml:"max_open_conns" mapstructure:"max_open_conns"` //最大打开连接数
 }
 
+type DBLog struct {
+	Enable bool   `yaml:"enable"`
+	Level  string `yaml:"level"`
+	Format string `yaml:"format"`
+	Type   string `yaml:"type"`
+	Path   string `yaml:"path"`
+}
+
 type DBItem struct {
-	Write GeneralDB `yaml:"write"`
-	Read  GeneralDB `yaml:"read"`
+	Write DBItemConf `yaml:"write"`
+	Read  DBItemConf `yaml:"read"`
+	Log   DBLog      `yaml:"log"`
 }

@@ -1,35 +1,14 @@
 package goadmin_logrus
 
 import (
+	"bufio"
 	"fmt"
 	rotatelogs "github.com/lestrrat-go/file-rotatelogs"
 	"github.com/sirupsen/logrus"
 	"io"
 	"os"
-	"path"
-	"path/filepath"
-	"runtime"
-	"sync"
 	"time"
 )
-
-// log实例
-const logTimeTpl = "2006-01-02T15:04:05.000Z07:00"
-
-var log *logrus.Entry
-var logLocker sync.RWMutex
-
-type CoreLogrus struct {
-	Level             string `mapstructure:"level" json:"level" yaml:"level"`                                     // 级别
-	LogFormat         string `mapstructure:"logFormat" json:"logFormat" yaml:"logFormat"`                         // 日志格式 json text
-	IsSetReportCaller bool   `mapstructure:"isSetReportCaller" json:"isSetReportCaller" yaml:"isSetReportCaller"` // 显示文件和代码行数
-	LogEnv            string `mapstructure:"logEnv" json:"logEnv" yaml:"logEnv"`                                  // 日志系统环境
-	Output            string `mapstructure:"output" json:"output" yaml:"output"`                                  // 日志输出方式  file output
-	LogPath           string `mapstructure:"logPath" json:"logPath" yaml:"logPath"`                               // 日志路径
-	MaxAge            int64  `mapstructure:"max-age" json:"max-age" yaml:"max-age"`                               // 日志留存时间
-	MaxCapacity       int64  `mapstructure:"max-capacity" json:"max-capacity" yaml:"max-capacity"`                // 单个日志的最大容量
-	HostName          string `mapstructure:"hostName" json:"hostName" yaml:"hostName"`                            // 主机名
-}
 
 func InitLogrus(logConf CoreLogrus) *logrus.Entry {
 	logLocker.RLock()
@@ -51,7 +30,27 @@ func InitLogrus(logConf CoreLogrus) *logrus.Entry {
 	logNew := logrus.New()
 
 	// 设置log的配置
-	return setLogrusConf(logConf, logNew)
+
+	logNew.AddHook(newRotateHook(logConf))
+
+	src, err := os.OpenFile(os.DevNull, os.O_APPEND|os.O_WRONLY, os.ModeAppend)
+	if err != nil {
+		fmt.Println("Open Src File err", err)
+	}
+	writer := bufio.NewWriter(src)
+	logNew.SetOutput(writer)
+
+	name, err := os.Hostname()
+	if err != nil {
+		panic("无法获取到主机名:" + err.Error())
+	}
+	l := logNew.WithFields(logrus.Fields{
+		//"env": logConf.LogEnv,
+		//"loccal_ip": env.LocalIP(),
+		"hostname": name,
+	})
+	log = l
+	return l
 }
 
 // 设置日志level
@@ -68,49 +67,10 @@ func setLogrusLevel(logConf CoreLogrus, logNew *logrus.Logger) {
 	}
 }
 
-// 设置日志格式
-func setLogrusFormat(logConf CoreLogrus, logNew *logrus.Logger, entry *logrus.Entry) {
-	if logConf.LogFormat == "json" {
-		logNew.SetFormatter(&logrus.JSONFormatter{
-			TimestampFormat: logTimeTpl,
-			// runtime.Frame: 帧,可用于获取调用者返回的PC值的函数、文件或者是行信息
-			CallerPrettyfier: func(frame *runtime.Frame) (function string, file string) {
-				fileName := path.Base(frame.File)
-				return frame.Function, fmt.Sprintf("%s:%d", fileName, frame.Line)
-			},
-		})
-		logNew.SetOutput(setRotatelogs(logConf))
-	} else {
-		// 如果非dev环境禁用掉color
-		logNew.SetFormatter(&logrus.TextFormatter{
-			TimestampFormat: logTimeTpl,
-			DisableColors:   logConf.LogEnv != "dev",
-			CallerPrettyfier: func(frame *runtime.Frame) (function string, file string) {
-				fName := filepath.Base(entry.Caller.File)
-				return frame.Function, fmt.Sprintf("[%s] [%-7s] [%s:%d %s] %s\n",
-					logTimeTpl, entry.Level.String(), fName, entry.Caller.Line, entry.Caller.Function, entry.Message)
-			},
-		})
-	}
-}
-
-// 设置日志输出方式
-func setLogrusOutput(logConf CoreLogrus, logNew *logrus.Logger) {
-	if logConf.Output == "file" {
-		f, e := loadLogFile(logConf)
-		if e != nil {
-			panic(e)
-		}
-		logNew.SetOutput(f)
-	} else {
-		logNew.SetOutput(os.Stdout)
-	}
-}
-
 func loadLogFile(logConf CoreLogrus) (io.Writer, error) {
 	logPath := "logs/app.log"
-	if logConf.LogPath != "" {
-		logPath = logConf.LogPath
+	if logConf.LogDir != "" {
+		logPath = logConf.LogDir + string(os.PathSeparator) + logConf.LogName + ".log"
 	}
 
 	// 判断logPath是相对路径还是绝对路径
@@ -137,29 +97,34 @@ func setLogrusConf(logConf CoreLogrus, logNew *logrus.Logger) *logrus.Entry {
 	// 设置日志输出方式
 	setLogrusOutput(logConf, logNew)
 
-	// 基础字段预设,比如项目名、环境、env、local_ip、hostname、idc
-	l := logNew.WithFields(logrus.Fields{
-		"env": logConf.LogEnv,
-		//"loccal_ip": env.LocalIP(),
-		"hostname": logConf.HostName,
-	})
-
 	// 设置日志格式 json 或者 text
-	setLogrusFormat(logConf, logNew, l)
+	//setLogrusFormat(logConf, logNew)
+
+	// 基础字段预设,比如项目名、环境、env、local_ip、hostname、idc
+	name, err := os.Hostname()
+	if err != nil {
+		panic("无法获取到主机名:" + err.Error())
+	}
+	l := logNew.WithFields(logrus.Fields{
+		//"env": logConf.LogEnv,
+		//"loccal_ip": env.LocalIP(),
+		"hostname": name,
+	})
 	log = l
 	return l
 }
 
 // 设置日志切割
 func setRotatelogs(logConf CoreLogrus) *rotatelogs.RotateLogs {
-	logfile := logConf.LogPath
 
 	writer, err := rotatelogs.New(
-		logfile+"-%Y%m%d.log",
-		rotatelogs.WithLinkName(logfile), //生成软链，指向最新日志文件
-		rotatelogs.WithMaxAge(time.Hour*24*time.Duration(logConf.MaxAge)), // 最大的保留时间 单位: 天
-		rotatelogs.WithRotationTime(24*time.Hour),                         //最小为1分钟轮询。默认60s  低于1分钟就按1分钟来
-		rotatelogs.WithRotationSize(logConf.MaxCapacity*1024*1024),        // 设置分割文件的大小为  单位: MB
+		logConf.LogDir+string(os.PathSeparator)+logConf.LogName+"-%Y%m%d.log",
+		//rotatelogs.WithLinkName(logConf.LogDir+string(os.PathSeparator)+logConf.LogName+".log"), //生成软链，指向最新日志文件
+		rotatelogs.WithLinkName(logConf.LogDir+string(os.PathSeparator)+logConf.LogName+".log"), //生成软链，指向最新日志文件
+		rotatelogs.WithMaxAge(time.Hour*24*time.Duration(logConf.MaxAge)),                       // 最大的保留时间 单位: 天
+		rotatelogs.WithRotationTime(24*time.Hour),                                               //最小为1分钟轮询。默认60s  低于1分钟就按1分钟来
+		rotatelogs.WithRotationSize(int64(logConf.MaxCapacity)*1024*1024),                       // 设置分割文件的大小为  单位: MB
+		rotatelogs.WithRotationCount(uint(logConf.MaxCount)),
 	)
 
 	if err != nil {
